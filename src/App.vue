@@ -24,6 +24,7 @@ import { ElContainer, ElHeader, ElMain, ElMenu, ElMenuItem, ElSubMenu } from 'el
             <el-menu-item index="1-1-9" route="DefineModel">DefineModel</el-menu-item>
             <el-menu-item index="1-1-10" route="ImportedTypesInSFCMacros">ImportedTypesInSFCMacros</el-menu-item>
             <el-menu-item index="1-1-11" route="SuspensibleOption">SuspensibleOption</el-menu-item>
+            <el-menu-item index="1-1-12" route="GenericComponents">GenericComponents</el-menu-item>
           </el-sub-menu>
         </el-sub-menu>
       </el-menu>

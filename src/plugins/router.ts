@@ -68,6 +68,11 @@ const routes: RouteRecordRaw[] = [
     name: "ImportedTypesInSFCMacros",
     component: () => import("@/views/vue/3.3/SuspensibleOptionView.vue")
   },
+  {
+    path: "/GenericComponents",
+    name: "GenericComponents",
+    component: () => import("@/views/vue/3.3/GenericComponentsView.vue")
+  },
 ];
 
 export const router = createRouter({
