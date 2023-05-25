@@ -8,11 +8,16 @@
 </template>
 
 <script setup lang="ts" generic="T extends string">
+import { useModel } from "vue";
 import { ElSelect, ElOption } from 'element-plus';
 
-defineProps<{
+const props = defineProps<{
   items: { label:string, value:T }[];
+  modelValue: T;
+}>()
+defineEmits<{
+  "updateModelValue": [value: T],
 }>()
 
-const modelValue = defineModel<T>()
+const modelValue = useModel(props, 'modelValue')
 </script>
