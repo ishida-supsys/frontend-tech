@@ -9,7 +9,7 @@
 //compiler-sfc: support arbitrary expression as withDefaults argument (fe61944), closes #6459
 //https://github.com/vuejs/core/issues/6459
 import { ElHeader, ElContainer, ElMain } from "element-plus"
-import { defaults } from "./ReferenceVariableInWithDefaults/test"
+import { defaults } from "./ReferenceVariableInWithDefaults/test-ext"
 defineOptions({
   name: "ReferenceVariableInWithDefaultsView",
 })
