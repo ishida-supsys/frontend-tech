@@ -26,6 +26,7 @@ import { ElContainer, ElHeader, ElMain, ElMenu, ElMenuItem, ElSubMenu } from 'el
             <el-menu-item index="1-1-11" route="SuspensibleOption">SuspensibleOption</el-menu-item>
             <el-menu-item index="1-1-12" route="GenericComponents">GenericComponents</el-menu-item>
           </el-sub-menu>
+          <el-menu-item index="1-2" route="UseQuery">UseQuery</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-header>

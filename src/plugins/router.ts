@@ -73,6 +73,11 @@ const routes: RouteRecordRaw[] = [
     name: "GenericComponents",
     component: () => import("@/views/vue/3.3/GenericComponentsView.vue")
   },
+  {
+    path: "/UseQuery",
+    name: "UseQuery",
+    component: () => import("@/views/vue/VueQuery/UseQueryView.vue")
+  },
 ];
 
 export const router = createRouter({
