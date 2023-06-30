@@ -7,6 +7,7 @@ import { GlobalProvide } from '@/plugins/vue/3.3/app-run-with-context'
 import { VueQueryPlugin } from "vue-query"
 import { queryClient } from '@/plugins/vue-query'
 import { ElLoading } from 'element-plus'
+import { MSWPlugin } from '@/plugins/msw'
 
 createApp(App)
 .use(router)
@@ -14,4 +15,5 @@ createApp(App)
 .use(GlobalProvide)
 .use(VueQueryPlugin, { queryClient })
 .use(ElLoading)
+.use(MSWPlugin)
 .mount('#app')

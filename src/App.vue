@@ -27,6 +27,10 @@ import { ElContainer, ElHeader, ElMain, ElMenu, ElMenuItem, ElSubMenu } from 'el
             <el-menu-item index="1-1-12" route="GenericComponents">GenericComponents</el-menu-item>
           </el-sub-menu>
           <el-menu-item index="1-2" route="UseQuery">UseQuery</el-menu-item>
+          <el-sub-menu index="1-3">
+            <template #title>Model</template>
+            <el-menu-item index="1-3-1" route="Dashboard/1">Dashboard</el-menu-item>
+          </el-sub-menu>
         </el-sub-menu>
       </el-menu>
     </el-header>

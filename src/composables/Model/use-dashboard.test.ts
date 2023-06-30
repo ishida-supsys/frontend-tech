@@ -1,4 +1,5 @@
-import { useCreateUser, useFetchUser, useFetchUsers, useRemoveUser, useUpdateUser } from "./use-user";
+//@vitest-environment jsdom
+import { useCreateDashboard, useFetchDashboard, useFetchDashboards, useRemoveDashboard, useUpdateDashboard } from "./use-dashboard";
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
 import { setupServer } from 'msw/node'
 import { rest } from "msw";
@@ -6,19 +7,19 @@ import { withSetup } from "@/utils/test-helper";
 import { flushPromises } from "@vue/test-utils";
 
 const server = setupServer(
-  rest.get('/users', (req, res, ctx) =>
+  rest.get('/dashboards', (req, res, ctx) =>
     res(ctx.json([
       { id: 1, name: "John Doe" },
       { id: 2, name: "Jane Doe" },
     ]))),
-  rest.post('/users', (req, res, ctx) =>
+  rest.post('/dashboards', (req, res, ctx) =>
     res(ctx.json({ id: 1, name: "John Doe" }))),
-  rest.put('/users/:userId', (req, res, ctx) =>
-    res(ctx.json({ id: Number(req.params.userId) }))),
-  rest.get('/users/:userId', (req, res, ctx) =>
-    res(ctx.json({ id: Number(req.params.userId) }))),
-  rest.delete('/users/:userId', (req, res, ctx) =>
-    res(ctx.json({ id: Number(req.params.userId) }))),
+  rest.put('/dashboards/:dashboardId', (req, res, ctx) =>
+    res(ctx.json({ id: Number(req.params.dashboardId), name: "John Doe" }))),
+  rest.get('/dashboards/:dashboardId', (req, res, ctx) =>
+    res(ctx.json({ id: Number(req.params.dashboardId), name: "John Doe" }))),
+  rest.delete('/dashboards/:dashboardId', (req, res, ctx) =>
+    res(ctx.json({ id: Number(req.params.dashboardId), name: "John Doe" }))),
 )
 
 beforeAll(() => server.listen())
@@ -27,10 +28,9 @@ afterEach(() => server.resetHandlers())
 
 afterAll(() => server.close())
 
-//@vitest-environment jsdom
-describe("useFetchUsers", () => {
+describe("useFetchDashboards", () => {
   it("should return users", async () => {
-    const { data } = withSetup(()=>useFetchUsers());
+    const { data } = withSetup(()=>useFetchDashboards());
     await flushPromises();
     expect(data.value).toEqual([
       {
@@ -45,9 +45,9 @@ describe("useFetchUsers", () => {
   });
 })
 
-describe("useCreateUser", () => {
+describe("useCreateDashboard", () => {
   it("create user", async () => {
-    const { mutate, data } = withSetup(()=>useCreateUser());
+    const { mutate, data } = withSetup(()=>useCreateDashboard());
     mutate();
     await flushPromises();
     expect(data.value).toEqual({
@@ -57,34 +57,41 @@ describe("useCreateUser", () => {
   });
 })
 
-describe("useFetchUser", () => {
+describe("useFetchDashboard", () => {
   it("should return user", async () => {
-    const { data } = withSetup(()=>useFetchUser(1));
+    const { data } = withSetup(()=>useFetchDashboard(1));
     await flushPromises();
     expect(data.value).toEqual({
       id: 1,
+      name: "John Doe",
     });
   });
 })
 
-describe("useUpdateUser", () => {
+describe("useUpdateDashboard", () => {
   it("should update user", async () => {
-    const { mutate, data } = withSetup(()=>useUpdateUser(1));
+    const { mutate, data } = withSetup(()=>useUpdateDashboard({
+      id: 1,
+      name: "John Doe",
+      panels: [],
+    }));
     mutate();
     await flushPromises();
     expect(data.value).toEqual({
       id: 1,
+      name: "John Doe",
     });
   });
 })
 
-describe("useRemoveUser", () => {
+describe("useRemoveDashboard", () => {
   it("should remove user", async () => {
-    const { mutate, data } = withSetup(()=>useRemoveUser(1));
+    const { mutate, data } = withSetup(()=>useRemoveDashboard(1));
     mutate();
     await flushPromises();
     expect(data.value).toEqual({
       id: 1,
+      name: "John Doe",
     });
   });
 })

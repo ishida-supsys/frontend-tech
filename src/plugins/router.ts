@@ -78,6 +78,12 @@ const routes: RouteRecordRaw[] = [
     name: "UseQuery",
     component: () => import("@/views/vue/VueQuery/UseQueryView.vue")
   },
+  {
+    path: "/Dashboard/:id",
+    name: "DashboardId",
+    component: () => import("@/views/vue/Model/DashboardIdView.vue"),
+    props: true,
+  },
 ];
 
 export const router = createRouter({
