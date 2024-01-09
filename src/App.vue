@@ -31,6 +31,7 @@ import { ElContainer, ElHeader, ElMain, ElMenu, ElMenuItem, ElSubMenu } from 'el
             <template #title>Model</template>
             <el-menu-item index="1-3-1" route="Dashboard/1">Dashboard</el-menu-item>
           </el-sub-menu>
+          <el-menu-item index="1-4" route="VueI18nUsage">VueI18nUsage</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-header>

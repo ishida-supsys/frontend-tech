@@ -15,7 +15,7 @@ export default defineConfig({
     }),
     ElementPlus(),
     VueI18n({
-      include: ["yaml"]
+      include: [ path.resolve(__dirname, './src/lang/**'), "yaml"]
     }),
   ],
   resolve: {
