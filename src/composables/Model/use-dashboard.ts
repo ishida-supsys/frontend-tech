@@ -30,6 +30,7 @@ import {
   GetDashboards200Response, 
   ErrorResponse, 
   PostDashboards200Response, 
+  PostDashboardsRequest,
   GetDashboardsId200Response,
   DeleteDashboardsIdResponse,
   PutDashboardsId200Response,
@@ -64,7 +65,7 @@ export const useFetchDashboards = (options?: UseQueryOptions<GetDashboards200Res
   }, options);
 
   const dashboards = computed<Dashboard[]|undefined>(()=>data.value)
-  const errorReason = computed(()=>error.value.code)
+  const errorReason = computed(()=>error.value?.code)
 
   return {
     data,
@@ -77,17 +78,19 @@ export const useFetchDashboards = (options?: UseQueryOptions<GetDashboards200Res
 }
 
 //新規作成
-export const useCreateDashboard = (options?: UseMutationOptions<PostDashboards200Response, ErrorResponse, void, void>)=>{
+export const useCreateDashboard = (options?: UseMutationOptions<PostDashboards200Response, ErrorResponse, PostDashboardsRequest, void>)=>{
   const { mutate, data, isLoading, isError, error } = useMutation<
     PostDashboards200Response, 
-    ErrorResponse
+    ErrorResponse,
+    PostDashboardsRequest,
+    void
   >(async ()=>{
     const { data } = await axios.post('/dashboards');
     return data;
   }, options)
 
   const dashboard = computed<Dashboard|undefined>(()=>data.value)
-  const errorReason = computed(()=>error.value.code)
+  const errorReason = computed(()=>error.value?.code)
 
   return {
     mutate,
@@ -111,7 +114,7 @@ export const useFetchDashboard = (id: MaybeRef<number>, options?: UseQueryOption
   }, options)
 
   const dashboard = computed<Dashboard|undefined>(()=>data.value)
-  const errorReason = computed(()=>error.value.code)
+  const errorReason = computed(()=>error.value?.code)
 
   return {
     data,
@@ -127,14 +130,16 @@ export const useFetchDashboard = (id: MaybeRef<number>, options?: UseQueryOption
 export const useUpdateDashboard = (source: MaybeRef<Dashboard>, options?: UseMutationOptions<PutDashboardsId200Response, ErrorResponse, PutDashboardsIdRequest, void>)=>{
   const { mutate, data, isLoading, isError, error } = useMutation<
     PutDashboardsId200Response, 
-    ErrorResponse
+    ErrorResponse,
+    PutDashboardsIdRequest,
+    void
   >(async ()=>{
     const { data } = await axios.put(`/dashboards/${unref(source).id}`, unref(source));
     return data;
   }, options)
 
   const dashboard = computed<Dashboard|undefined>(()=>data.value)
-  const errorReason = computed(()=>error.value.code)
+  const errorReason = computed(()=>error.value?.code)
 
   return {
     mutate,
@@ -151,13 +156,15 @@ export const useUpdateDashboard = (source: MaybeRef<Dashboard>, options?: UseMut
 export const useRemoveDashboard = (id: MaybeRef<number>, options?: UseMutationOptions<DeleteDashboardsIdResponse, ErrorResponse, void, void>)=>{
   const { mutate, data, isLoading, isError, error } = useMutation<
     DeleteDashboardsIdResponse, 
-    ErrorResponse
+    ErrorResponse,
+    void,
+    void
   >(async ()=>{
     const { data } = await axios.delete(`/dashboards/${unref(id)}`);
     return data;
   }, options)
 
-  const errorReason = computed(()=>error.value.code)
+  const errorReason = computed(()=>error.value?.code)
   
   return {
     mutate,
