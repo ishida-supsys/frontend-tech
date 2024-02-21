@@ -12,6 +12,7 @@ export type Dataset = {
 
 export type GetDatasets200Response = Dataset[];
 export type PostDatasets200Response = Dataset;
+export type PostDatasetsRequest = Dataset;
 export type GetDatasetsId200Response = Dataset;
 export type PutDatasetsIdRequest = Dataset;
 export type PutDatasetsId200Response = Dataset;
