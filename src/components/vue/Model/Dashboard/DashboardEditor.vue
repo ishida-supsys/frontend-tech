@@ -17,6 +17,7 @@
         :name="panel.name"
         :dataset-id="panel.datasetId"
         :type="panel.type"
+        @update:dataset-id="$emit('update:panelDatasetId', panel.id, $event)"
       />
     </el-main>
     <el-footer>
@@ -51,6 +52,7 @@ defineOptions({
 defineProps<Props>()
 defineEmits<{
   (e: "click:addPanel"|"click:save"): void;
+  (e: "update:panelDatasetId", id: string, datasetId: string): void;
 }>()
 
 const { t } = useI18n({ useScope:"local" })

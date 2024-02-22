@@ -6,14 +6,20 @@
 
     <ul>
       <li>name: {{ name }}</li>
-      <li>datasetId: {{ datasetId }}</li>
+      <li>
+        datasetId: {{ datasetId }}
+        <el-button @click="$emit('update:datasetId', nanoid())">
+          Update
+        </el-button>
+      </li>
       <li>type: {{ type }}</li>
     </ul>
   </el-card>
 </template>
 
 <script lang="ts" setup>
-import { ElCard } from 'element-plus';
+import { ElCard, ElButton } from 'element-plus';
+import { nanoid } from "nanoid";
 //define Presentational Model
 export type Props = {
   name: string | undefined;
@@ -25,5 +31,8 @@ defineOptions({
   name: "PanelCard",
 })
 defineProps<Props>()
+defineEmits<{
+  (e: "update:datasetId", datasetId: string): void;
+}>()
 
 </script>

@@ -19,6 +19,19 @@ export const MSWPlugin: Plugin = {
         res(ctx.json({ id: Number(req.params.dashboardId), name: "John Doe", panels:[] }))),
       rest.delete('/dashboards/:dashboardId', (req, res, ctx) =>
         res(ctx.json({ id: Number(req.params.dashboardId), name: "John Doe", panels:[] }))),
+      rest.get('/datasets', (req, res, ctx) =>
+        res(ctx.json([
+          { id: "1", name: "John Doe" },
+          { id: "2", name: "Jane Doe" },
+        ]))),
+      rest.post('/datasets', (req, res, ctx) =>
+        res(ctx.json({ id: "1", name: "John Doe" }))),
+      rest.put('/datasets/:dashboardId', (req, res, ctx) =>
+        res(ctx.json({ id: req.params.dashboardId, name: "John Doe" }))),
+      rest.get('/datasets/:dashboardId', (req, res, ctx) =>
+        res(ctx.json({ id: req.params.dashboardId, name: "John Doe" }))),
+      rest.delete('/datasets/:dashboardId', (req, res, ctx) =>
+        res(ctx.json({ id: req.params.dashboardId, name: "John Doe" }))),
     ).start({
       // onUnhandledRequest: 'error',
     });

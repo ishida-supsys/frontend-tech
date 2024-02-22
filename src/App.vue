@@ -15,21 +15,21 @@ import { ElContainer, ElHeader, ElMain, ElMenu, ElMenuItem, ElSubMenu } from 'el
             <template #title>3.3</template>
             <el-menu-item index="1-1-1" route="ConstTypeParameters">ConstTypeParameters</el-menu-item>
             <el-menu-item index="1-1-2" route="DefineOptions">DefineOptions</el-menu-item>
-            <el-menu-item index="1-1-3" route="EnableReactivePropsDestructure">EnableReactivePropsDestructure</el-menu-item>
-            <el-menu-item index="1-1-4" route="MiscVue3.3">MiscVue3.3</el-menu-item>
-            <el-menu-item index="1-1-5" route="ShortEmits">ShortEmits</el-menu-item>
-            <el-menu-item index="1-1-6" route="ReferenceVariableInWithDefaults">ReferenceVariableInWithDefaults</el-menu-item>
-            <el-menu-item index="1-1-7" route="GetterUsageInReactivityAPIs">GetterUsageInReactivityAPIs</el-menu-item>
-            <el-menu-item index="1-1-8" route="DefineSlots">DefineSlots</el-menu-item>
-            <el-menu-item index="1-1-9" route="DefineModel">DefineModel</el-menu-item>
-            <el-menu-item index="1-1-10" route="ImportedTypesInSFCMacros">ImportedTypesInSFCMacros</el-menu-item>
-            <el-menu-item index="1-1-11" route="SuspensibleOption">SuspensibleOption</el-menu-item>
-            <el-menu-item index="1-1-12" route="GenericComponents">GenericComponents</el-menu-item>
+            <el-menu-item index="1-1-3" route="/EnableReactivePropsDestructure">EnableReactivePropsDestructure</el-menu-item>
+            <el-menu-item index="1-1-4" route="/MiscVue3.3">MiscVue3.3</el-menu-item>
+            <el-menu-item index="1-1-5" route="/ShortEmits">ShortEmits</el-menu-item>
+            <el-menu-item index="1-1-6" route="/ReferenceVariableInWithDefaults">ReferenceVariableInWithDefaults</el-menu-item>
+            <el-menu-item index="1-1-7" route="/GetterUsageInReactivityAPIs">GetterUsageInReactivityAPIs</el-menu-item>
+            <el-menu-item index="1-1-8" route="/DefineSlots">DefineSlots</el-menu-item>
+            <el-menu-item index="1-1-9" route="/DefineModel">DefineModel</el-menu-item>
+            <el-menu-item index="1-1-10" route="/ImportedTypesInSFCMacros">ImportedTypesInSFCMacros</el-menu-item>
+            <el-menu-item index="1-1-11" route="/SuspensibleOption">SuspensibleOption</el-menu-item>
+            <el-menu-item index="1-1-12" route="/GenericComponents">GenericComponents</el-menu-item>
           </el-sub-menu>
-          <el-menu-item index="1-2" route="UseQuery">UseQuery</el-menu-item>
+          <el-menu-item index="1-2" route="/UseQuery">UseQuery</el-menu-item>
           <el-sub-menu index="1-3">
             <template #title>Model</template>
-            <el-menu-item index="1-3-1" route="Dashboard/1">Dashboard</el-menu-item>
+            <el-menu-item index="1-3-1" route="/Dashboard/1">Dashboard</el-menu-item>
           </el-sub-menu>
         </el-sub-menu>
       </el-menu>
