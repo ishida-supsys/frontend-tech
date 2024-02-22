@@ -77,8 +77,8 @@ export const useFetchDataset = (id: MaybeRef<string>, options?: UseQueryOptions<
 
   return { data, isLoading, isError, error, dataset, errorReason };
 }
-export const useFetchDatasets = (ids: MaybeRef<string[]>, options?: UseQueryOptions<GetDatasets200Response, ErrorResponse>) => {
-  const dataRefQuery = computed<UseQueryOptions<GetDatasets200Response, ErrorResponse>[]>(() =>
+export const useFetchDatasets = (ids: MaybeRef<string[]>, options?: UseQueryOptions<GetDatasetsId200Response, ErrorResponse>) => {
+  const dataRefQuery = computed<UseQueryOptions<GetDatasetsId200Response, ErrorResponse>[]>(() =>
     unref(ids).map((id) => {
       return {
         queryKey: ["datasets", id],
@@ -86,12 +86,12 @@ export const useFetchDatasets = (ids: MaybeRef<string[]>, options?: UseQueryOpti
           const response = await axios.get(`/datasets/${id}`);
           return response.data;
         },
-        options,
+        ...options,
       };
     })
   );
   const dataList = useQueries(dataRefQuery);
-  const datasets = computed(() => dataList.map((data) => data.data));
+  const datasets = computed<(Dataset|undefined)[]>(() => dataList.map((data) => data.data));
   const isLoading = computed(() => dataList.some((data) => data.isLoading));
   const isError = computed(() => dataList.some((data) => data.isError));
   const errors =  computed(() => dataList.map((data) => data.error));

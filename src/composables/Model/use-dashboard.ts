@@ -21,7 +21,7 @@
 /scenario/** -> use-scenario
 
 */
-import { computed, unref } from "vue";
+import { Ref, computed, unref } from "vue";
 import axios from "axios";
 import { useMutation, useQuery, UseQueryOptions, UseMutationOptions } from "vue-query"; 
 import { MaybeRef } from "@vueuse/core";
@@ -37,6 +37,7 @@ import {
   PutDashboardsIdRequest,
 } from "@/types/dashboard";
 import _clonedeep from "lodash.clonedeep"
+import invariant from "tiny-invariant";
 
 export type DashboardPanel = {
   id: string;
@@ -46,7 +47,7 @@ export type DashboardPanel = {
 }
 //define DataModel
 export type Dashboard = {
-  id: number | undefined;
+  id: number;
   name: string | undefined;
   panels: DashboardPanel[];
 }
@@ -127,14 +128,16 @@ export const useFetchDashboard = (id: MaybeRef<number>, options?: UseQueryOption
 }
 
 //更新
-export const useUpdateDashboard = (source: MaybeRef<Dashboard>, options?: UseMutationOptions<PutDashboardsId200Response, ErrorResponse, PutDashboardsIdRequest, void>)=>{
+export const useUpdateDashboard = (source: Dashboard|Ref<Dashboard|undefined>, options?: UseMutationOptions<PutDashboardsId200Response, ErrorResponse, void, void>)=>{
   const { mutate, data, isLoading, isError, error } = useMutation<
     PutDashboardsId200Response, 
     ErrorResponse,
-    PutDashboardsIdRequest,
+    void,
     void
   >(async ()=>{
-    const { data } = await axios.put(`/dashboards/${unref(source).id}`, unref(source));
+    const _source = unref(source)
+    invariant(_source, "source is undefined");
+    const { data } = await axios.put(`/dashboards/${_source.id}`, _source);
     return data;
   }, options)
 
